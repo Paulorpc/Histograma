@@ -1,5 +1,4 @@
-## Paulo Cezar ##
-## paulorpc@gmail.com ##
+# Verão simples, sem interface onde usuário pode carregar qualquer imagem. Previsto para v2. 
 
 import cv2
 from matplotlib import pyplot as plt
