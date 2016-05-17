@@ -1,5 +1,3 @@
-# Verão simples, sem interface onde usuário pode carregar qualquer imagem. Previsto para v2. 
-
 # Versao simples, sem interface onde usuario pode carregar qualquer imagem. Previsto para v2.
 
 import cv2
@@ -18,6 +16,8 @@ def HistLinha(img, color):
 
     ax1.set_title("Imagem Original")
     ax2.set_title("Histograma de Linhas ")
+
+    ax1.axis('off')
 
     plt.ylabel("Frequencia")
     plt.xlabel("Pixels")
@@ -59,6 +59,8 @@ def HistLinhaBarra(img, color):
     ax2.set_title("Histograma de Linhas ")
     ax3.set_title("Histograma de Barras ")
 
+    ax1.axis('off')
+
     plt.ylabel("Frequencia")
     plt.xlabel("Pixels")
 
@@ -98,6 +100,8 @@ def HistBarra(img, cor):
 
     ax1.set_title("Imagem Original")
     ax3.set_title("Histograma de Barras ")
+
+    ax1.axis('off')
 
     plt.ylabel("Frequencia")
     plt.xlabel("Pixels")
