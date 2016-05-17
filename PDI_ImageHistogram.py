@@ -1,7 +1,10 @@
+## Paulo Cezar ##
+## paulorpc@gmail.com ##
+
 import cv2
 from matplotlib import pyplot as plt
 
-def Histograma(img, color):
+def HistLinha(img, color):
 
     plt.figure(figsize=(15, 5))
 
@@ -25,7 +28,7 @@ def Histograma(img, color):
 
     plt.show()
 
-def HistogramaBarra(img, color):
+def HistLinhaBarra(img, color):
 
     plt.figure(figsize=(15, 5))
 
@@ -43,7 +46,7 @@ def HistogramaBarra(img, color):
 
 
     for i, cor in enumerate(color):
-        hist = cv2.calcHist([img], [i], None, [256], [0, 300])
+        hist = cv2.calcHist([img], [i], None, [256], [0, 256])
         plt.subplot(222), plt.plot(hist, color=cor)
         plt.xlim([0, 256])
 
@@ -51,7 +54,7 @@ def HistogramaBarra(img, color):
     plt.show()
 
 
-def HistrogramaDeBarra(img, cor):
+def HistBarra(img, cor):
 
     plt.figure(figsize=(15, 5))
 
@@ -71,12 +74,17 @@ def HistrogramaDeBarra(img, cor):
 
 cor = 0
 img = cv2.imread('igreja.tif', cor)
-Histograma(img, cor)
-HistrogramaDeBarra(img, cor)
-HistogramaBarra(img, cor)
+HistLinha(img, cor)
+HistBarra(img, cor)
+HistLinhaBarra(img, cor)
 
 cor = 1
-img1 = cv2.imread('losroques.jpg', cor)
-Histograma(img1, cor)
-HistrogramaDeBarra(img1, cor)
-HistogramaBarra(img1, cor)
+img = cv2.imread('losroques.jpg', cor)
+HistLinha(img, cor)
+HistBarra(img, cor)
+HistLinhaBarra(img, cor)
+
+img = cv2.imread('suco.jpg', cor)
+HistLinha(img, cor)
+HistBarra(img, cor)
+HistLinhaBarra(img, cor)
