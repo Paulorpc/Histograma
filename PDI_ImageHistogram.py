@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 def HistLinha(img, color):
 
+    # Fixa o tamahno do figure
     plt.figure(figsize=(15, 5))
 
     if color is 1:
@@ -19,7 +20,7 @@ def HistLinha(img, color):
         color = ('b');
         plt.subplot(121), plt.imshow(img, 'gray')
 
-
+    # For com a qtde de indices do vetor
     for i, cor in enumerate(color):
         hist = cv2.calcHist([img], [i], None, [256], [0, 256])
         plt.subplot(122), plt.plot(hist, color=cor)
@@ -27,15 +28,17 @@ def HistLinha(img, color):
 
     plt.show()
 
+
 def HistLinhaBarra(img, color):
 
+    # Fixa o tamahno do figure
     plt.figure(figsize=(15, 5))
 
     if color is 1:
         #vetor de cores para linhas do histogram
         color = ('b', 'g', 'r')
 
-        # Precisa converter img em RGB para usar no pylpot
+        # Precisa converter img em RGB para usar no pyplot
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         plt.subplot(221), plt.imshow(img)
 
@@ -44,6 +47,7 @@ def HistLinhaBarra(img, color):
         plt.subplot(221), plt.imshow(img, 'gray')
 
 
+    # For com a qtde de indices do vetor
     for i, cor in enumerate(color):
         hist = cv2.calcHist([img], [i], None, [256], [0, 256])
         plt.subplot(222), plt.plot(hist, color=cor)
@@ -55,12 +59,15 @@ def HistLinhaBarra(img, color):
 
 def HistBarra(img, cor):
 
+    # Fixa o tamahno do figure
     plt.figure(figsize=(15, 5))
 
-    # Cria um vetor com os dados da entrada
+    # Cria um vetor com os dados da entrada da imagem
     imgArray = img.ravel()
 
     if cor is 1:
+        
+        # Precisa converter img em RGB para usar no pyplot
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         plt.subplot(121), plt.imshow(img)
     else:
@@ -70,7 +77,7 @@ def HistBarra(img, cor):
     plt.show()
 
 
-
+# imread: 0 gray; 1 color; -1 alpha
 cor = 0
 img = cv2.imread('igreja.tif', cor)
 HistLinha(img, cor)
