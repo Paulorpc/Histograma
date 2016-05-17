@@ -1,12 +1,26 @@
 # Verão simples, sem interface onde usuário pode carregar qualquer imagem. Previsto para v2. 
 
+# Versao simples, sem interface onde usuario pode carregar qualquer imagem. Previsto para v2.
+
 import cv2
 from matplotlib import pyplot as plt
 
 def HistLinha(img, color):
 
-    # Fixa o tamahno do figure
-    plt.figure(figsize=(15, 5))
+    # Ajustes do Figure
+    fig = plt.figure(3, figsize=(15, 8))
+    tit = fig.suptitle("PDI: Histogramas", fontsize="x-large")
+    tit.set_y(0.95)
+    fig.subplots_adjust(top=0.85)
+
+    ax1 = fig.add_subplot(121)
+    ax2 = fig.add_subplot(122)
+
+    ax1.set_title("Imagem Original")
+    ax2.set_title("Histograma de Linhas ")
+
+    plt.ylabel("Frequencia")
+    plt.xlabel("Pixels")
 
     if color is 1:
         #vetor de cores para linhas do histogram
@@ -14,25 +28,39 @@ def HistLinha(img, color):
 
         # Precisa converter img em RGB para usar no pylpot
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        plt.subplot(121), plt.imshow(img)
+        ax1.imshow(img)
 
     else:
         color = ('b');
-        plt.subplot(121), plt.imshow(img, 'gray')
+        ax1.imshow(img, 'gray')
 
     # For com a qtde de indices do vetor
     for i, cor in enumerate(color):
         hist = cv2.calcHist([img], [i], None, [256], [0, 256])
-        plt.subplot(122), plt.plot(hist, color=cor)
+        ax2.plot(hist, color=cor)
         plt.xlim([0, 256])
 
-    plt.show()
+    #plt.show()
 
 
 def HistLinhaBarra(img, color):
 
-    # Fixa o tamahno do figure
-    plt.figure(figsize=(15, 5))
+    # Ajustes do Figure
+    fig = plt.figure(1, figsize=(15, 8))
+    tit = fig.suptitle("PDI: Histogramas", fontsize="x-large")
+    tit.set_y(0.95)
+    fig.subplots_adjust(top=0.85)
+
+    ax1 = fig.add_subplot(221)
+    ax2 = fig.add_subplot(222)
+    ax3 = fig.add_subplot(224)
+
+    ax1.set_title("Imagem Original")
+    ax2.set_title("Histograma de Linhas ")
+    ax3.set_title("Histograma de Barras ")
+
+    plt.ylabel("Frequencia")
+    plt.xlabel("Pixels")
 
     if color is 1:
         #vetor de cores para linhas do histogram
@@ -40,57 +68,75 @@ def HistLinhaBarra(img, color):
 
         # Precisa converter img em RGB para usar no pyplot
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        plt.subplot(221), plt.imshow(img)
+        ax1.imshow(img)
 
     else:
         color = ('b');
-        plt.subplot(221), plt.imshow(img, 'gray')
+        ax1.imshow(img, 'gray')
 
 
     # For com a qtde de indices do vetor
     for i, cor in enumerate(color):
         hist = cv2.calcHist([img], [i], None, [256], [0, 256])
-        plt.subplot(222), plt.plot(hist, color=cor)
+        ax2.plot(hist, color=cor)
         plt.xlim([0, 256])
 
-    plt.subplot(224), plt.hist(img.ravel(), 256, [0, 256])
-    plt.show()
+    ax3.hist(img.ravel(), 256, [0, 256])
+    #plt.show()
 
 
 def HistBarra(img, cor):
 
-    # Fixa o tamahno do figure
-    plt.figure(figsize=(15, 5))
+    # Ajustes do Figure
+    fig = plt.figure(2, figsize=(15, 8))
+    tit = fig.suptitle("PDI: Histogramas", fontsize="x-large")
+    tit.set_y(0.95)
+    fig.subplots_adjust(top=0.85)
 
-    # Cria um vetor com os dados da entrada da imagem
+    ax1 = fig.add_subplot(121)
+    ax3 = fig.add_subplot(122)
+
+    ax1.set_title("Imagem Original")
+    ax3.set_title("Histograma de Barras ")
+
+    plt.ylabel("Frequencia")
+    plt.xlabel("Pixels")
+
+    # Cria um vetor com os dados da imagem
     imgArray = img.ravel()
 
     if cor is 1:
-        
+
         # Precisa converter img em RGB para usar no pyplot
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        plt.subplot(121), plt.imshow(img)
-    else:
-        plt.subplot(121), plt.imshow(img, 'gray')
+        ax1.imshow(img)
 
-    plt.subplot(122), plt.hist(imgArray, 256, [0, 256])
-    plt.show()
+    else:
+        ax1.imshow(img, 'gray')
+
+    ax3.hist(imgArray, 256, [0, 256])
+    #plt.show()
+
+
 
 
 # imread: 0 gray; 1 color; -1 alpha
 cor = 0
 img = cv2.imread('igreja.tif', cor)
-HistLinha(img, cor)
-HistBarra(img, cor)
 HistLinhaBarra(img, cor)
+HistBarra(img, cor)
+HistLinha(img, cor)
+plt.show()
 
 cor = 1
 img = cv2.imread('losroques.jpg', cor)
-HistLinha(img, cor)
-HistBarra(img, cor)
 HistLinhaBarra(img, cor)
+HistBarra(img, cor)
+HistLinha(img, cor)
+plt.show()
 
 img = cv2.imread('suco.jpg', cor)
-HistLinha(img, cor)
-HistBarra(img, cor)
 HistLinhaBarra(img, cor)
+HistBarra(img, cor)
+HistLinha(img, cor)
+plt.show()
