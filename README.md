@@ -1,5 +1,5 @@
 # Histograma_Python-OpenCV
-Algortimo simples de PDI para exibir o histograma de uma imagem. Feito com Pyton e OpenCV.
+Algortimo simples de PDI (processamento digital de imagem) para exibir o histograma de uma imagem. Feito com Pyton e OpenCV.
 
 - Limiarização usando histograma HSI (grupo 1)
 - Criar uma interface apresentando histogramas RGB;
